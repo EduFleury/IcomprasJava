@@ -6,6 +6,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.http.Method;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DurationFormat;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -33,13 +34,13 @@ public class BucketService {
 
     public String getUrl(String fileName){
         try{
-
+            int week = 3600 * 24 * 7;
             var object = GetPresignedObjectUrlArgs
                     .builder()
                     .method(Method.GET)
                     .bucket(props.getBucketName())
                     .object(fileName)
-                    .expiry(3600)
+                    .expiry(week)
                     .build();
             return client.getPresignedObjectUrl(object);
         }catch (Exception e){

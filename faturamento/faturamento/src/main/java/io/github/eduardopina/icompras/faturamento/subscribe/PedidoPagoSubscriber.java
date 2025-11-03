@@ -1,7 +1,7 @@
 package io.github.eduardopina.icompras.faturamento.subscribe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.eduardopina.icompras.faturamento.GeradorNotaFiscalService;
+import io.github.eduardopina.icompras.faturamento.service.GeradorNotaFiscalService;
 import io.github.eduardopina.icompras.faturamento.mapper.PedidoMapper;
 import io.github.eduardopina.icompras.faturamento.model.Pedido;
 import io.github.eduardopina.icompras.faturamento.subscribe.representation.DetalhePedidoRepresentation;
@@ -21,9 +21,8 @@ public class PedidoPagoSubscriber {
 
     @KafkaListener(groupId = "icompras-faturamento", topics = "${icompras.config.kafka.topics.pedidos-pagos}")
     public void listen(String json){
-        System.out.println("MENSAGEM RECEBIDA: " + json);
-        log.info("Recebendo pedido para faturamento: {}", json);
         try {
+            log.info("Recebendo pedido para faturamento: {}", json);
             var representation = mapper.readValue(json, DetalhePedidoRepresentation.class);
             Pedido pedido = pedidoMapper.map(representation);
             service.gerar(pedido);

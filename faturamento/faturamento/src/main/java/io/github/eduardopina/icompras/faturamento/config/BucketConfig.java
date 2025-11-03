@@ -14,6 +14,7 @@ public class BucketConfig {
 
     @Bean
     public MinioClient bucketClient(){
+        System.out.println("bucketClient");
         return MinioClient.builder()
                 .endpoint(props.getUrl())
                 .credentials(props.getAccessKey(), props.getSecretKey())
