@@ -31,6 +31,7 @@ A imagem a seguir ilustra o fluxo de eventos e a interação entre os microservi
 *   **Linguagem:** Java 21
 *   **Framework:** Spring Boot 3.5.7
 *   **Mensageria:** Apache Kafka
+*   **MinIO:**: Armazenamento da Nota Fiscal gerada
 *   **Banco de Dados:** PostgreSQL
 *   **Containerização:** Docker e Docker Compose
 *   **Build Tool:** Maven
@@ -105,7 +106,7 @@ O fluxo de um pedido segue a seguinte sequência de eventos via Kafka:
 
 1.  **Criação do Pedido:** O serviço de **Pedidos** recebe a requisição e publica um evento de "Pagamento Pendente".
 2.  **Processamento do Pagamento:** O serviço de **Pedidos** recebe o status do pagamento (simulado) e publica um evento de "Pagamento Publicado".
-3.  **Faturamento:** O serviço de **Faturamento** consome o evento de "Pagamento Publicado" e publica um evento de "Faturamento Publicado".
+3.  **Faturamento:** O serviço de **Faturamento** consome o evento de "Pagamento Publicado" e publica um evento de "Faturamento Publicado" e gera uma Nf em pdf armazenando no MinIO.
 4.  **Logística:** O serviço de **Logística** consome o evento de "Faturamento Publicado", cadastra o rastreamento e publica um evento de "Envio de Pedido Publicado".
 5.  **Atualização do Pedido:** O serviço de **Pedidos** consome os eventos de "Faturamento Publicado" e "Envio de Pedido Publicado" para atualizar o status final do pedido.
 
@@ -118,6 +119,8 @@ O fluxo de um pedido segue a seguinte sequência de eventos via Kafka:
 | **Produtos** | `/produtos` | `POST` | Cria um novo produto. |
 | **Produtos** | `/produtos/{id}` | `GET` | Busca um produto por ID. |
 | **Pedidos** | `/pedidos` | `POST` | Cria um novo pedido, iniciando o fluxo. |
+| **Pedidos** | `/pedidos/callback-pagamentos` | `POST` | Realiza Pagamento do Pedido. |
 | **Pedidos** | `/pedidos/{id}` | `GET` | Busca um pedido por ID e seu status. |
+| **Bucket** | `localhost:8084/bucket?filename=?` | `GET` | Busca link da NF gerada. |
 
 ---
