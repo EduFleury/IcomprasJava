@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/../clientes/clientes/clientes.iml" filepath="$PROJECT_DIR$/../clientes/clientes/clientes.iml" />
       <module fileurl="file://$PROJECT_DIR$/../faturamento/faturamento/faturamento.iml" filepath="$PROJECT_DIR$/../faturamento/faturamento/faturamento.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/icompras-servico.iml" filepath="$PROJECT_DIR$/.idea/icompras-servico.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../logistica/logistica/logistica.iml" filepath="$PROJECT_DIR$/../logistica/logistica/logistica.iml" />
       <module fileurl="file://$PROJECT_DIR$/../pedidos/pedidos/pedidos.iml" filepath="$PROJECT_DIR$/../pedidos/pedidos/pedidos.iml" />
       <module fileurl="file://$PROJECT_DIR$/../produtos/produtos/produtos.iml" filepath="$PROJECT_DIR$/../produtos/produtos/produtos.iml" />
       <module fileurl="file://$PROJECT_DIR$/servicos/servicos.iml" filepath="$PROJECT_DIR$/servicos/servicos.iml" />

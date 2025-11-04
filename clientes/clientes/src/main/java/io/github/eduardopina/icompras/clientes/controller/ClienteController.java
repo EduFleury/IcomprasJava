@@ -3,8 +3,10 @@ package io.github.eduardopina.icompras.clientes.controller;
 import io.github.eduardopina.icompras.clientes.model.Cliente;
 import io.github.eduardopina.icompras.clientes.service.ClienteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("clientes")
@@ -24,5 +26,16 @@ public class ClienteController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
 
+    }
+
+    @DeleteMapping("{codigo}")
+    public ResponseEntity<Void> deletar(@PathVariable("codigo") Long codigo){
+
+        Cliente cliente = service.obterPorCodigo(codigo).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Cliente Inexistente"
+        ));
+
+        service.deletar(cliente);
+        return ResponseEntity.noContent().build();
     }
 }

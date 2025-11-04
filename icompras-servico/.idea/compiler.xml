@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="faturamento" />
         <module name="servicos" />
+        <module name="logistica" />
       </profile>
       <profile name="Annotation profile for pedidos" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -36,6 +37,7 @@
     <bytecodeTargetLevel>
       <module name="clientes" target="18" />
       <module name="faturamento" target="18" />
+      <module name="logistica" target="18" />
       <module name="pedidos" target="18" />
       <module name="produtos" target="18" />
       <module name="servicos" target="18" />
@@ -45,6 +47,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="clientes" options="-parameters" />
       <module name="faturamento" options="-parameters" />
+      <module name="logistica" options="-parameters" />
       <module name="pedidos" options="-parameters" />
       <module name="produtos" options="-parameters" />
       <module name="servicos" options="-parameters" />
